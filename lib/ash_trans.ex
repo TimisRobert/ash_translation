@@ -1,13 +1,13 @@
-defmodule AshTrans do
+defmodule AshTranslation do
   @moduledoc false
 
   def cldr_backend_provider(config) do
     module = __MODULE__
     backend = config.backend
-    info = AshTrans.Resource.Info
+    info = AshTranslation.Resource.Info
 
     quote location: :keep, bind_quoted: [module: module, backend: backend, info: info] do
-      defmodule AshTrans do
+      defmodule AshTranslation do
         def translate(resource) do
           locale = unquote(backend).get_locale().cldr_locale_name
           unquote(module).translate(resource, locale)
@@ -68,7 +68,7 @@ defmodule AshTrans do
         end)
       end)
 
-    AshTrans.Resource.Info.translations_fields!(resource)
+    AshTranslation.Resource.Info.translations_fields!(resource)
     |> Enum.reduce(resource, fn field, resource ->
       Map.update!(resource, field, fn original ->
         Map.get(translations, field) || original

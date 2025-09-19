@@ -1,4 +1,4 @@
-defmodule AshTrans.Resource.Transformers.CreateTranslationResource do
+defmodule AshTranslation.Resource.Transformers.CreateTranslationResource do
   @moduledoc false
 
   use Spark.Dsl.Transformer
@@ -16,7 +16,7 @@ defmodule AshTrans.Resource.Transformers.CreateTranslationResource do
     opts = [
       name: :translations,
       type: translations_module_name,
-      public?: AshTrans.Resource.Info.translations_public?(dsl)
+      public?: AshTranslation.Resource.Info.translations_public?(dsl)
     ]
 
     {:ok, attribute} = Transformer.build_entity(Ash.Resource.Dsl, [:attributes], :attribute, opts)
@@ -28,7 +28,7 @@ defmodule AshTrans.Resource.Transformers.CreateTranslationResource do
 
   defp define_translations_fields(module_name, dsl) do
     attributes =
-      AshTrans.Resource.Info.translations_fields!(dsl)
+      AshTranslation.Resource.Info.translations_fields!(dsl)
       |> Enum.map(&Ash.Resource.Info.attribute(dsl, &1))
 
     Module.create(
@@ -50,7 +50,7 @@ defmodule AshTrans.Resource.Transformers.CreateTranslationResource do
   end
 
   defp define_translations(module_name, translation_module_name, dsl) do
-    locales = AshTrans.Resource.Info.translations_locales!(dsl)
+    locales = AshTranslation.Resource.Info.translations_locales!(dsl)
 
     Module.create(
       module_name,

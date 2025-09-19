@@ -1,3 +1,3 @@
-defmodule AshTrans.Resource.Info do
-  use Spark.InfoGenerator, extension: AshTrans.Resource, sections: [:translations]
+defmodule AshTranslation.Resource.Info do
+  use Spark.InfoGenerator, extension: AshTranslation.Resource, sections: [:translations]
 end

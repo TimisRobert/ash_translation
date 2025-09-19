@@ -1,10 +1,10 @@
-defmodule AshTrans.Test.Author do
+defmodule AshTranslation.Test.Author do
   @moduledoc false
 
   use Ash.Resource,
-    domain: AshTrans.Test.Domain,
+    domain: AshTranslation.Test.Domain,
     data_layer: Ash.DataLayer.Ets,
-    extensions: [AshTrans.Resource]
+    extensions: [AshTranslation.Resource]
 
   attributes do
     uuid_v7_primary_key :id
@@ -16,12 +16,12 @@ defmodule AshTrans.Test.Author do
   end
 
   relationships do
-    has_many :posts, AshTrans.Test.Post
+    has_many :posts, AshTranslation.Test.Post
   end
 
   translations do
     public? true
     fields [:name]
-    locales AshTrans.Test.Cldr.AshTrans.locale_names()
+    locales AshTranslation.Test.Cldr.AshTranslation.locale_names()
   end
 end

@@ -1,11 +1,11 @@
-defmodule AshTrans.MixProject do
+defmodule AshTranslation.MixProject do
   use Mix.Project
 
-  @version "0.2.0"
+  @version "0.2.1"
 
   def project do
     [
-      app: :ash_trans,
+      app: :ash_translation,
       version: @version,
       elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
@@ -15,8 +15,8 @@ defmodule AshTrans.MixProject do
       aliases: aliases(),
       docs: docs(),
       description: "An Ash extension for managing translations on a resource.",
-      source_url: "https://github.com/TimisRobert/ash_trans",
-      homepage_url: "https://github.com/TimisRobert/ash_trans"
+      source_url: "https://github.com/TimisRobert/ash_translation",
+      homepage_url: "https://github.com/TimisRobert/ash_translation"
     ]
   end
 
@@ -40,7 +40,7 @@ defmodule AshTrans.MixProject do
       extras: [
         {"README.md", title: "Home"},
         "documentation/tutorials/get-started-with-ash-trans.md",
-        "documentation/dsls/DSL:-AshTrans.Resource.md"
+        "documentation/dsls/DSL:-AshTranslation.Resource.md"
       ],
       groups_for_extras: [
         Tutorials: ~r'documentation/tutorials',
@@ -48,10 +48,10 @@ defmodule AshTrans.MixProject do
       ],
       groups_for_modules: [
         Extension: [
-          AshTrans.Resource
+          AshTranslation.Resource
         ],
         Introspection: [
-          AshTrans.Resource.Info
+          AshTranslation.Resource.Info
         ]
       ]
     ]
@@ -59,12 +59,12 @@ defmodule AshTrans.MixProject do
 
   defp package do
     [
-      name: :ash_trans,
+      name: :ash_translation,
       licenses: ["MIT"],
       files: ~w(lib .formatter.exs mix.exs README* LICENSE*
       CHANGELOG* documentation),
       links: %{
-        GitHub: "https://github.com/TimisRobert/ash_trans"
+        GitHub: "https://github.com/TimisRobert/ash_translation"
       }
     ]
   end
@@ -89,10 +89,10 @@ defmodule AshTrans.MixProject do
         "spark.replace_doc_links",
         "spark.cheat_sheets_in_search"
       ],
-      "spark.formatter": "spark.formatter --extensions AshTrans.Resource",
-      "spark.cheat_sheets": "spark.cheat_sheets --extensions AshTrans.Resource",
+      "spark.formatter": "spark.formatter --extensions AshTranslation.Resource",
+      "spark.cheat_sheets": "spark.cheat_sheets --extensions AshTranslation.Resource",
       "spark.cheat_sheets_in_search":
-        "spark.cheat_sheets_in_search --extensions AshTrans.Resource"
+        "spark.cheat_sheets_in_search --extensions AshTranslation.Resource"
     ]
   end
 end

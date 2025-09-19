@@ -1,22 +1,22 @@
-# Get Started with AshTrans
+# Get Started with AshTranslation
 
 ## Installation
 
-Add the dependency to your `mix.exs` file and include `:ash_trans` in your `.formatter.exs`:
+Add the dependency to your `mix.exs` file and include `:ash_translation` in your `.formatter.exs`:
 
 ```elixir
 # In mix.exs
-{:ash_trans, "~> 0.1.0"}
+{:ash_translation, "~> 0.1.0"}
 
 # In .formatter.exs
-import_deps: [..., :ash_trans]
+import_deps: [..., :ash_translation]
 ```
 
-If you are using Cldr, add AshTrans to your providers:
+If you are using Cldr, add AshTranslation to your providers:
 
 ```elixir
 use Cldr,
-  providers: [AshTrans],
+  providers: [AshTranslation],
   locales: ["it", "en"]
 ```
 
@@ -26,7 +26,7 @@ To add translations to a resource, add the extension to the resource:
 
 ```elixir
 use Ash.Resource,
-  extensions: [..., AshTrans.Resource]
+  extensions: [..., AshTranslation.Resource]
 
 translations do
   # Set `public?` to true or add `:translations` to the action's accept list for public access
@@ -36,7 +36,7 @@ translations do
   # Add the locales, except the default locale since it will be directly on the resource
   locales [:it]
   # If you are using Cldr
-  locales MyApp.Cldr.AshTrans.locale_names()
+  locales MyApp.Cldr.AshTranslation.locale_names()
 end
 ```
 
@@ -63,7 +63,7 @@ defmodule MyApp.Post do
   use Ash.Resource,
     domain: MyApp.Domain,
     data_layer: Ash.DataLayer.Ets,
-    extensions: [AshTrans.Resource]
+    extensions: [AshTranslation.Resource]
 
   attributes do
     uuid_v7_primary_key :id
@@ -141,20 +141,20 @@ post =
 To translate our struct, we can call `translate/2` or to translate just a field and have it returned `translate_field/3`
 
 ```elixir
-post_it = AshTrans.translate(post, :it)
+post_it = AshTranslation.translate(post, :it)
 %{title: "Titolo", body: "Corpo"} = post_it
 
-"Titolo" = AshTrans.translate_field(post, :title, :it)
+"Titolo" = AshTranslation.translate_field(post, :title, :it)
 ```
 
 # Full example with Phoenix Liveview, Ash and Cldr
 
-First we need to install and configure Cldr, then add to the Cldr module the AshTrans provider:
+First we need to install and configure Cldr, then add to the Cldr module the AshTranslation provider:
 
 ```elixir
 defmodule MyApp.Cldr do
   use Cldr,
-    providers: [AshTrans],
+    providers: [AshTranslation],
     locales: ["it", "en"]
 end
 ```
@@ -165,7 +165,7 @@ Let's use the resource we have defined above, and replace in translations the lo
 
 ```elixir
 translations do
-  locales MyApp.Cldr.AshTrans.locale_names()
+  locales MyApp.Cldr.AshTranslation.locale_names()
 end
 ```
 
@@ -206,7 +206,7 @@ defmodule MyAppWeb.Post.FormComponent do
         <.inputs_for :let={translations} field={@form[:translations]}>
           <.inputs_for
             :let={field}
-            :for={locale <- Cldr.AshTrans.locale_names()}
+            :for={locale <- Cldr.AshTranslation.locale_names()}
             field={translations[locale]}
           >
             <.input
@@ -226,7 +226,7 @@ defmodule MyAppWeb.Post.FormComponent do
         <.inputs_for :let={translations} field={@form[:translations]}>
           <.inputs_for
             :let={field}
-            :for={locale <- Cldr.AshTrans.locale_names()}
+            :for={locale <- Cldr.AshTranslation.locale_names()}
             field={translations[locale]}
           >
             <.input
@@ -296,7 +296,7 @@ defmodule MyAppWeb.Post.FormComponent do
         as: "post",
         forms: [auto?: true]
       )
-      |> AshTrans.add_forms(Cldr.AshTrans.locale_names())
+      |> AshTranslation.add_forms(Cldr.AshTranslation.locale_names())
 
     assign(socket, :form, to_form(form))
   end
@@ -307,7 +307,7 @@ defmodule MyAppWeb.Post.FormComponent do
         as: "post",
         forms: [auto?: true]
       )
-      |> AshTrans.add_forms(Cldr.AshTrans.locale_names())
+      |> AshTranslation.add_forms(Cldr.AshTranslation.locale_names())
 
     assign(socket, :form, to_form(form))
   end
@@ -329,7 +329,7 @@ defmodule MyAppWeb.Post.FormComponent do
   end
 
   defp locale_options do
-    [default_locale() | Cldr.AshTrans.locale_names()]
+    [default_locale() | Cldr.AshTranslation.locale_names()]
     |> Enum.map(&{Cldr.LocaleDisplay.display_name!(&1), &1})
   end
 
@@ -337,7 +337,7 @@ defmodule MyAppWeb.Post.FormComponent do
 end
 ```
 
-Here we have used the Phoenix `.inputs_for` component to manage the nested embedded resource translations, then when creating the form we used the helper in AshTrans `add_forms/1` to add the necessary forms.
+Here we have used the Phoenix `.inputs_for` component to manage the nested embedded resource translations, then when creating the form we used the helper in AshTranslation `add_forms/1` to add the necessary forms.
 
 We use CSS to hide translation inputs rather than conditional rendering to preserve input data when switching languages.
 
@@ -368,11 +368,11 @@ defmodule MyAppWeb.PostLive.Show do
   def mount(%{"id" => id}, _session, socket) do
     post =
       Ash.get!(Post, id)
-      |> Cldr.AshTrans.translate(post)
+      |> Cldr.AshTranslation.translate(post)
 
     {:ok, socket |> assign(:post, post)}
   end
 end
 ```
 
-Cldr handles passing the current locale to AshTrans, which can be set using various strategies, such as [Cldr.Plug](https://hexdocs.pm/ex_cldr_plugs/readme.html).
+Cldr handles passing the current locale to AshTranslation, which can be set using various strategies, such as [Cldr.Plug](https://hexdocs.pm/ex_cldr_plugs/readme.html).

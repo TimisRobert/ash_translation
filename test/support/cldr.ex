@@ -1,5 +1,5 @@
-defmodule AshTrans.Test.Cldr do
+defmodule AshTranslation.Test.Cldr do
   use Cldr,
-    providers: [AshTrans],
+    providers: [AshTranslation],
     locales: ["it", "en", "de"]
 end

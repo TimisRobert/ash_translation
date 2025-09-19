@@ -1,8 +1,8 @@
-defmodule AshTrans.Test.Domain do
+defmodule AshTranslation.Test.Domain do
   use Ash.Domain
 
   resources do
-    resource AshTrans.Test.Author
-    resource AshTrans.Test.Post
+    resource AshTranslation.Test.Author
+    resource AshTranslation.Test.Post
   end
 end

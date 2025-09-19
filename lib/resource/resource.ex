@@ -1,4 +1,4 @@
-defmodule AshTrans.Resource do
+defmodule AshTranslation.Resource do
   @translations %Spark.Dsl.Section{
     name: :translations,
     schema: [
@@ -29,6 +29,6 @@ defmodule AshTrans.Resource do
   use Spark.Dsl.Extension,
     sections: [@translations],
     transformers: [
-      AshTrans.Resource.Transformers.CreateTranslationResource
+      AshTranslation.Resource.Transformers.CreateTranslationResource
     ]
 end

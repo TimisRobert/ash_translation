@@ -1,9 +1,9 @@
 import Config
 
 config :git_ops,
-  mix_project: AshTrans.MixProject,
+  mix_project: AshTranslation.MixProject,
   changelog_file: "CHANGELOG.md",
-  repository_url: "https://github.com/TimisRobert/ash_trans",
+  repository_url: "https://github.com/TimisRobert/ash_translation",
   # Instructs the tool to manage your mix version in your `mix.exs` file
   # See below for more information
   manage_mix_version?: true,
