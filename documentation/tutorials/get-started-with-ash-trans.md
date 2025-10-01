@@ -6,7 +6,7 @@ Add the dependency to your `mix.exs` file and include `:ash_translation` in your
 
 ```elixir
 # In mix.exs
-{:ash_translation, "~> 0.1.0"}
+{:ash_translation, "~> 0.2.0"}
 
 # In .formatter.exs
 import_deps: [..., :ash_translation]

@@ -55,14 +55,13 @@ defmodule AshTranslation do
       when map_size(translations) > 0 do
     translations = Map.get(resource.translations, locale) || %{}
 
+    IO.inspect(resource)
+
     resource =
       Ash.Resource.Info.relationships(resource)
-      |> Enum.filter(fn
-        %Ash.Resource.Relationships.BelongsTo{} -> false
-        _ -> true
-      end)
       |> Enum.reduce(resource, fn relationship, resource ->
         Map.update!(resource, relationship.name, fn
+          %Ash.NotLoaded{} = field -> field
           field when is_list(field) -> Enum.map(field, &translate(&1, locale))
           field -> translate(field, locale)
         end)
