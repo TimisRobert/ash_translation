@@ -15,7 +15,8 @@ defmodule AshTranslation.Test do
       })
       |> Ash.create!()
 
-    assert %{title: "Title", body: "Body"} = AshTranslation.Test.Cldr.AshTranslation.translate(post)
+    assert %{title: "Title", body: "Body"} =
+             AshTranslation.Test.Cldr.AshTranslation.translate(post)
   end
 
   test "handle missing translations by falling back to default locale" do
@@ -28,7 +29,8 @@ defmodule AshTranslation.Test do
       })
       |> Ash.create!()
 
-    assert %{title: "Title", body: "Body"} = AshTranslation.Test.Cldr.AshTranslation.translate(post)
+    assert %{title: "Title", body: "Body"} =
+             AshTranslation.Test.Cldr.AshTranslation.translate(post)
   end
 
   test "handle missing locale translations by falling back to default locale" do
@@ -47,7 +49,8 @@ defmodule AshTranslation.Test do
       })
       |> Ash.create!()
 
-    assert %{title: "Title", body: "Body"} = AshTranslation.Test.Cldr.AshTranslation.translate(post)
+    assert %{title: "Title", body: "Body"} =
+             AshTranslation.Test.Cldr.AshTranslation.translate(post)
   end
 
   test "handle missing field translations by falling back to default locale" do
@@ -65,7 +68,8 @@ defmodule AshTranslation.Test do
       })
       |> Ash.create!()
 
-    assert %{title: "Title", body: "Corpo"} = AshTranslation.Test.Cldr.AshTranslation.translate(post)
+    assert %{title: "Title", body: "Corpo"} =
+             AshTranslation.Test.Cldr.AshTranslation.translate(post)
   end
 
   test "nested relationships get translated" do

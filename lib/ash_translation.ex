@@ -55,8 +55,6 @@ defmodule AshTranslation do
       when map_size(translations) > 0 do
     translations = Map.get(resource.translations, locale) || %{}
 
-    IO.inspect(resource)
-
     resource =
       Ash.Resource.Info.relationships(resource)
       |> Enum.reduce(resource, fn relationship, resource ->
