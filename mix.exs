@@ -76,8 +76,8 @@ defmodule AshTranslation.MixProject do
       {:ex_doc, github: "elixir-lang/ex_doc", only: [:dev, :test], runtime: false},
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
       {:git_ops, "~> 2.6.1", only: [:dev]},
-      {:ash, "~> 3.5.8"},
-      {:ash_phoenix, "~> 2.3.0"}
+      {:ash, "~> 3.5"},
+      {:ash_phoenix, "~> 2.3"}
     ]
   end
 
