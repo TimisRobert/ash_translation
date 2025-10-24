@@ -34,7 +34,15 @@ defmodule AshTranslation do
   end
 
   def add_forms(form, locales, path) do
-    keys = for key <- path ++ [:translations], do: Access.key(key)
+    keys =
+      for key <- path ++ [:translations] do
+        case key do
+          # for list indices
+          k when is_integer(k) -> Access.at(k)
+          # for map keys
+          k -> Access.key(k)
+        end
+      end
 
     if get_in(form.original_data, keys) do
       form
