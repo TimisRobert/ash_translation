@@ -4,5 +4,6 @@ defmodule AshTranslation.Test.Domain do
   resources do
     resource AshTranslation.Test.Author
     resource AshTranslation.Test.Post
+    resource AshTranslation.Test.Tag
   end
 end

@@ -111,4 +111,28 @@ defmodule AshTranslation.Test do
     )
     |> AshTranslation.add_forms(AshTranslation.Test.Cldr.AshTranslation.locale_names())
   end
+
+  test "nested list forms work" do
+    AshPhoenix.Form.for_update(
+      %AshTranslation.Test.Post{
+        title: "title",
+        tags: [
+          %{
+            name: "tag 1",
+            translations: %{}
+          },
+          %{
+            name: "tag 2",
+            translations: %{}
+          }
+        ]
+      },
+      :update,
+      as: "post",
+      forms: [auto?: true]
+    )
+    |> AshTranslation.add_forms(AshTranslation.Test.Cldr.AshTranslation.locale_names())
+    |> AshTranslation.add_forms(AshTranslation.Test.Cldr.AshTranslation.locale_names(), [:tags, 0])
+    |> AshTranslation.add_forms(AshTranslation.Test.Cldr.AshTranslation.locale_names(), [:tags, 1])
+  end
 end
