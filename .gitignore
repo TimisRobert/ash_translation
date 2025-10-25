@@ -25,7 +25,7 @@ ash_trans-*.tar
 # Temporary files, for example, from tests.
 /tmp/
 
-.lexical 
+.expert
 
 .devenv*
 devenv.local.nix
