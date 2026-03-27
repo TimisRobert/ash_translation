@@ -72,7 +72,7 @@ defmodule AshTranslation.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:ex_cldr, "~> 2.42.0", only: [:test], optional: true},
+      {:ex_cldr, "~> 2.47.0", only: [:dev, :test], optional: true},
       {:ex_doc, github: "elixir-lang/ex_doc", only: [:dev, :test], runtime: false},
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
       {:git_ops, "~> 2.6.1", only: [:dev]},
