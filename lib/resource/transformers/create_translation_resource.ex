@@ -34,6 +34,7 @@ defmodule AshTranslation.Resource.Transformers.CreateTranslationResource do
     Module.create(
       module_name,
       quote location: :keep do
+        @derive {Jason.Encoder, except: [:__meta__]}
         use Ash.Resource, data_layer: :embedded
 
         attributes do
@@ -55,6 +56,7 @@ defmodule AshTranslation.Resource.Transformers.CreateTranslationResource do
     Module.create(
       module_name,
       quote location: :keep do
+        @derive {Jason.Encoder, except: [:__meta__]}
         use Ash.Resource, data_layer: :embedded
 
         attributes do
